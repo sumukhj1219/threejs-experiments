@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.vignette-blur {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  
+  /* 1. This creates the blur effect across the whole screen */
+  backdrop-filter: blur(8px); 
+  
+  /* 2. This MASK carves a hole in the middle so the center stays sharp */
+  /* We use a radial gradient: 'transparent' in the middle, 'black' at the edges */
+  -webkit-mask-image: radial-gradient(
+    circle, 
+    transparent 20%, 
+    black 80%
+  );
+  mask-image: radial-gradient(
+    circle, 
+    transparent 20%, 
+    black 80%
+  );
+}
